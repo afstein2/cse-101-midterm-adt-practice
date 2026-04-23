@@ -162,6 +162,31 @@ int countComponents(Graph G) {
 }
 
 
+int countDFSComponents(Graph G) {
+    int components = 0;
+    int n = getOrder(G);
+
+    List S = newList();
+
+    // initialize list with vertices 1..n
+    for (int i = 1; i <= n; i++) {
+        append(S, i);
+    }
+
+    // run DFS
+    DFS(G, S);
+
+    // count roots of DFS forest
+    for (moveFront(S); position(S) >= 0; moveNext(S)) {
+        if (getParent(G, get(S)) == NIL) {
+            components++;
+        }
+    }
+
+    freeList(&S);
+    return components;
+}
+
 
 int main(void) {
 
