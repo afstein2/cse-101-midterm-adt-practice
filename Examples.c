@@ -14,8 +14,8 @@ int main() {
         printf("%d ", arr[i]);
     }
 
-    
 
+    // Example: Check if a string is a palindrome
+    char str[] = "racecar";
 
     return 0;
-}

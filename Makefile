@@ -1,4 +1,3 @@
-
 #------------------------------------------------------------------------------
 # Makefile for CSE 101 Programming Assignment 1
 #
@@ -15,22 +14,31 @@ ADTSRC  = $(ADT).c
 ADTOBJ  = $(ADT).o
 ADT_H   = $(ADT).h
 
+GRAPH     = Graph
+GRAPHSRC  = $(GRAPH).c
+GRAPHOBJ  = $(GRAPH).o
+GRAPH_H   = $(GRAPH).h
+
 COMPILE = gcc -std=c17 -Wall -c
 LINK    = gcc -std=c17 -Wall -o
 REMOVE  = rm -f
 
 # Build executable
-$(MAIN): $(MAINOBJ) $(ADTOBJ)
-	$(LINK) $(MAIN) $(MAINOBJ) $(ADTOBJ)
+$(MAIN): $(MAINOBJ) $(ADTOBJ) $(GRAPHOBJ)
+	$(LINK) $(MAIN) $(MAINOBJ) $(ADTOBJ) $(GRAPHOBJ)
 
 # Compile main
-$(MAINOBJ): $(ADT_H) $(MAINSRC)
+$(MAINOBJ): $(ADT_H) $(GRAPH_H) $(MAINSRC)
 	$(COMPILE) $(MAINSRC)
 
-# Compile ADT
+# Compile List ADT
 $(ADTOBJ): $(ADT_H) $(ADTSRC)
 	$(COMPILE) $(ADTSRC)
 
+# Compile Graph ADT
+$(GRAPHOBJ): $(GRAPH_H) $(GRAPHSRC)
+	$(COMPILE) $(GRAPHSRC)
+
 # Clean
 clean:
-	$(REMOVE) $(MAIN) $(MAINOBJ) $(ADTOBJ)
+	$(REMOVE) $(MAIN) $(MAINOBJ) $(ADTOBJ) $(GRAPHOBJ)
